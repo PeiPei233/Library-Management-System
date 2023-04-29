@@ -3,6 +3,8 @@ import utils.DatabaseConnector;
 
 import java.util.logging.Logger;
 
+import javax.swing.UIManager;
+
 public class Main {
 
     private static final Logger log = Logger.getLogger(Main.class.getName());
@@ -20,13 +22,15 @@ public class Main {
                 System.exit(1);
             }
             /* do somethings */
-
-            // release database connection handler
-            if (connector.release()) {
-                log.info("Success to release connection.");
-            } else {
-                log.warning("Failed to release connection.");
-            }
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+            new LMSUI(connector);
+            
+            // // release database connection handler
+            // if (connector.release()) {
+            //     log.info("Success to release connection.");
+            // } else {
+            //     log.warning("Failed to release connection.");
+            // }
         } catch (Exception e) {
             e.printStackTrace();
         }
